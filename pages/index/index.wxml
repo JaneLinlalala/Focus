@@ -42,7 +42,7 @@
     <navigator url='/pages/logs/logs'>
        <image class='timer_icon' src="../../image/history2.png"></image>
     </navigator>
-    <navigator url='/pages/setting/setting'>
+    <navigator url='/pages/table/table'>
        <image class='timer_icon' src="../../image/book.png"></image>
     </navigator>
   </view>
