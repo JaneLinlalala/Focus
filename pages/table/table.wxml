@@ -1,0 +1,29 @@
+<!--pages/table/table.wxml-->
+<block wx:if="{{myTable.length}}">
+	<scroll-view class="container" scroll-y="true">
+	  <view class="log panel">
+	  	<view class="food_item" wx:for="{{foodArr}}" wx:for-index="$index" wx:for-item="food">
+        <view class='sub_food_item'>
+          <view style='float:left'> 
+            <image src="{{food.img}}" style='width:60px;height:60px'></image>
+          </view>
+          <view style='margin-left:80px; margin-top:10px'>
+            <view><text class="food_title">{{food.name}}</text></view>
+            <view>
+              <text class="log_action">等级:{{food.level}}</text>
+              <text style='margin-top:2px' class="log_action">数量:{{myTable[food.id]}}</text>
+            </view>
+          </view>
+        </view>
+	  	</view>
+	  </view>
+	</scroll-view>
+</block>
+
+<block wx:else>
+	<view class="nodata">
+		<image class="nodata_img" src="../../image/nodata.png"></image>
+		<text class="nodata_text">空</text>
+	</view>
+</block>
+

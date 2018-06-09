@@ -1,0 +1,26 @@
+/* pages/table/table.wxss */
+.container{
+  max-height: 100%;
+}
+.log {
+	color: #999;
+	margin: 15px 10px;
+}
+.food_item{
+	 padding: 5px 5px; 
+   display: flex;
+   justify-content: center;
+}
+.sub_food_item{
+  width: 260px;
+  padding-left: 10px;
+  /* background: ghostwhite; */
+  /* border:2px solid wheat; */
+}
+.food_title{
+  color: #fd8f58;
+  font-size:18px; 
+}
+.food_item text {
+	padding-right: 20px;
+}
