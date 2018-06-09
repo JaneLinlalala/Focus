@@ -8,7 +8,11 @@
 		 		<view class="timer_progress timer_right">
 		 			<view class="timer_circle timer_circle--right" style="transform: rotate({{rightDeg}}deg);"></view>
 		 		</view>
-			 	<text wx:if="{{!completed}}" class="timer_time">{{remainTimeText}}</text>
+        <view class="picker">
+          <picker range="{{array}}" value="{{index}}" bindchange="bindPickerChange">
+              <view  wx:if="{{!completed}}" class="timer_time">{{remainTimeText}}</view>
+          </picker>
+        </view>
 			 	<text 
 			 		wx:if="{{isRuning}}" 
 			 		animation="{{nameAnimation}}" 
@@ -18,6 +22,7 @@
 		 			class="timer_done" 
 		 			src="../../image/complete.png"></image>
 		 </view>
+
 		 <input 
 		 	type="text" 
 		 	placeholder-style="text-align:center" 
@@ -35,10 +40,10 @@
 	</view>
   <view class="timer_button">
     <navigator url='/pages/logs/logs'>
-       <icon type='waiting' class='timer_icon' color='#55AA55' size='30'></icon>
+       <image class='timer_icon' src="../../image/history2.png"></image>
     </navigator>
     <navigator url='/pages/setting/setting'>
-        <icon type='info' class='timer_icon'color='#6F9191' size='30'> </icon>
+       <image class='timer_icon' src="../../image/book.png"></image>
     </navigator>
   </view>
 </view>

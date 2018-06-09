@@ -42,14 +42,9 @@ button {
 
 .container {
   height: 100%;
-  background-color: #f5f5f5;
+  background-color: white;
 }
 
-.panel {
-  background: #fff;
-  border-radius: 3px;
-  padding: 5px 10px;
-}
 .nodata{
 	display: flex;
 	justify-content: center;

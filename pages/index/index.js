@@ -1,7 +1,6 @@
 const util = require('../../utils/util.js')
 const defaultLogName = {
-  work: '专注',
-  rest: '休息'
+  work: '专注'
 }
 const actionName = {
   stop: '停止',
@@ -22,16 +21,71 @@ Page({
     completed: false,
     isRuning: false,
     leftDeg: initDeg.left,
-    rightDeg: initDeg.right
+    rightDeg: initDeg.right,
+    array: [10, 30, 45, 60, 90, 120, 150, 180, 210, 240],
+    objectArray: [
+      {
+        id: 0,
+        name: '10'
+      },
+      {
+        id: 1,
+        name: '30'
+      },
+      {
+        id: 2,
+        name: '45'
+      },
+      {
+        id: 3,
+        name: '60'
+      },
+      {
+        id: 4,
+        name: '90'
+      },
+      {
+        id: 5,
+        name: '120'
+      },
+      {
+        id: 6,
+        name: '150'
+      },
+      {
+        id: 7,
+        name: '180'
+      },
+      {
+        id: 8,
+        name: '210'
+      },
+      {
+        id: 9,
+        name: '240'
+      }
+    ],
+    index: 0,
   },
+
+  bindPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index: e.detail.value
+    })
+    wx.setStorage({
+      key: 'WorkTime',
+      data: this.data.array[e.detail.value]
+    })
+    this.onShow({})
+  },
+
 
   onShow: function() {
     if (this.data.isRuning) return
-    let workTime = util.formatTime(wx.getStorageSync('workTime'), 'HH')
-    let restTime = util.formatTime(wx.getStorageSync('restTime'), 'HH')
+    let workTime = util.formatTime(wx.getStorageSync('WorkTime'), 'HH')
     this.setData({
       workTime: workTime,
-      restTime: restTime,
       remainTimeText: workTime + ':00'
     })
   },

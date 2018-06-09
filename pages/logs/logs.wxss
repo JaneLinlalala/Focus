@@ -1,13 +1,12 @@
 .container{
 	padding-bottom: 50px;
-	max-height: 92%;
+	max-height: 96%;
 }
 .log {
 	color: #999;
-	margin: 15px 10px;
 }
 .log_item{
-	padding: 15px 5px;
+	padding:15px  30px;
 }
 .log_item text {
 	padding-right: 20px;
@@ -20,10 +19,10 @@
 }
 .clear .clear_btn {
 	margin: 10px;
-	height: 35px;
-	line-height: 35px;
+	height: 30px;
+	line-height: 30px;
 	color:#fff;
-	background-color: #fd8f58;
+	background-color: #6699ff;
 	border-radius: 2px;
-  width: 80%;
+  width: 35%;
 }
