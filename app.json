@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/setting/setting"
+    "pages/table/table"
   ],
   "window": {
     "backgroundTextStyle": "light",
