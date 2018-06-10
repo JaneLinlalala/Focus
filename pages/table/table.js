@@ -1,5 +1,5 @@
 // pages/table/table.js
-const c=require("./class.js");
+const c = require("../../utils/class.js");
 c.initiateFood();
 
 Page({
@@ -18,12 +18,9 @@ Page({
   onLoad: function (options) {
     let foods= wx.getStorageSync('foods')
     if(foods){
-
-    }
-    else{
-      for(var i=0;i<this['data']['myTable'].length;i++){
-        this['data']['myTable'][i]=0;
-      }
+        this.setData({
+          myTable:foods
+        });
     }
   },
 
@@ -41,7 +38,6 @@ Page({
     wx.setNavigationBarTitle({
       title: '我的餐桌'
     })
-
   },
 
   /**
