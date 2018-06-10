@@ -1,3 +1,4 @@
+<!-- <canvas wx:if="{{completed}}" canvas-id="mycanvas" style='width:340px;height:540px'></canvas> -->
 <view class="container timer {{isRuning ? 'timer--runing': ''}}">
 	<view class="timer_main">
 		 <view class="timer_time-wrap">
@@ -8,7 +9,7 @@
 		 		<view class="timer_progress timer_right">
 		 			<view class="timer_circle timer_circle--right" style="transform: rotate({{rightDeg}}deg);"></view>
 		 		</view>
-        <view class="picker">
+        <view wx:if="{{!completed}}" class="picker">
           <picker range="{{array}}" value="{{index}}" bindchange="bindPickerChange">
               <view  wx:if="{{!completed}}" class="timer_time">{{remainTimeText}}</view>
           </picker>
@@ -20,7 +21,7 @@
 		 		<image 
 		 			wx:if="{{completed}}" 
 		 			class="timer_done" 
-		 			src="../../image/complete.png"></image>
+		 			src="{{foodArr[foodId].img}}"></image>
 		 </view>
 
 		 <input 
@@ -40,11 +41,10 @@
 	</view>
   <view class="timer_button">
     <navigator url='/pages/logs/logs'>
-       <image class='timer_icon' src="../../image/history2.png"></image>
+       <image class='timer_icon' src="../../image/history.png"></image>
     </navigator>
     <navigator url='/pages/table/table'>
        <image class='timer_icon' src="../../image/book.png"></image>
     </navigator>
   </view>
 </view>
-

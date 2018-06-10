@@ -1,4 +1,6 @@
 const util = require('../../utils/util.js')
+const c = require("../../utils/class.js");
+c.initiateFood();
 const defaultLogName = {
   work: '专注'
 }
@@ -15,6 +17,9 @@ const initDeg = {
 Page({
 
   data: {
+    foodId:-1,
+    foodArr:c.foodArr,
+    //
     remainTimeText: '',
     timerType: 'work',
     log: {},
@@ -95,7 +100,7 @@ Page({
     let isRuning = this.data.isRuning
     let timerType = e.target.dataset.type
     let showTime = this.data[timerType + 'Time']
-    let keepTime = showTime * 60 * 1000
+    let keepTime = showTime * 60 * 1000//
     let logName = this.logName || defaultLogName[timerType]
 
     if (!isRuning) {
@@ -164,9 +169,36 @@ Page({
       this.setData({
         remainTimeText: remainTimeText
       })
-    } else if (remainingTime == 0) {
+    } else if (remainingTime <= 0) {
+      //
+      var level = this.generateFood();
+      var id=parseInt(Math.random()*100);
+      var tempFoo=[];
+      for(var i=0;i<c.foodNum;i++){
+        if(c.foodArr[i].level==level){
+          tempFoo.push(i);
+        }
+      }
+      id=id%tempFoo.length;
+      id=tempFoo[id];
       this.setData({
-        completed: true
+        completed: true,
+        foodId:id
+      })
+      let foods = wx.getStorageSync('foods');
+      if(foods){
+        foods[id]++;
+      }
+      else{
+        foods=new Array(c.foodNum);
+        for(var i=0;i<c.foodNum;i++){
+          foods[id]=0;
+        }
+        foods[id]++;
+      }
+      wx.setStorage({
+        key: 'foods',
+        data: foods,
       })
       this.stopTimer()
       return
@@ -196,5 +228,63 @@ Page({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(log)
     wx.setStorageSync('logs', logs)
+  },
+
+  generateFood:function(){
+    var workId=this.data.index;
+    workId=parseInt(workId);
+    var randNum=Math.random();
+    var division=[1,1,1,1,1];
+    switch(workId){
+      case 0: case 1: division = [0.6, 0.8, 0.9, 0.95, 0.99];break;
+      case 2: division = [0.2, 0.7, 0.85, 0.95, 0.99];break;
+      case 3: division = [0.1, 0.4, 0.8, 0.9, 0.95];break;
+      case 4: division = [0.05, 0.25, 0.4, 0.85, 0.95];break;
+      case 5: division = [0.01, 0.1, 0.3, 0.65, 0.9];break;
+      case 6: case 7: case 8: case 9:division = [0.01, 0.05, 0.2, 0.5, 0.8];break;
+    }
+    if(randNum<=division[0]){
+      return 1;
+    }
+    else if(randNum<=division[1]){
+      return 2;
+    }
+    else if(randNum<=division[2]){
+      return 3;
+    }
+    else if(randNum<=division[3]){
+      return 4;
+    }
+    else if(randNum<=division[4]){
+      return 5;
+    }
+    else{
+      return 6;
+    }
+  },
+
+  drawCanvas:function(cvs){
+    cvs.drawImage("../../image/share.png",0,0);
+    var tFood=c.foodArr[parseInt(this.data.foodId)];
+    var level=tFood.level;
+    var size=40+level*10;
+    cvs.drawImage(tFood.img,170-size,205-size);
+    cvs.setFontSize(35);
+    cvs.setFillStyle("#6ABFEC");
+    cvs.fillText(this.data.objectArray[this.data.index].name,120,446);
+    //
+    cvs.setFontSize(16);
+    cvs.setFillStyle("#818181");
+    //
+    var date = new Date();
+    if(date.getMonth()+1<10){
+      var myDate = date.getFullYear() + '-' + '0' + (date.getMonth() + 1) + '-' + date.getDate();
+    }
+    else{
+      var myDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+    }
+    //
+    cvs.fillText(myDate,120,520);
+    cvs.draw();
   }
 })
