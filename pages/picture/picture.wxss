@@ -1,0 +1,9 @@
+/* pages/picture/picture.wxss */
+.button{
+ margin-top:20rpx; 
+ width:350rpx; 
+ height:60rpx;
+ vertical-align: middle;
+ text-align: center;  
+ line-height: 60rpx
+}

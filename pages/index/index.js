@@ -1,5 +1,7 @@
 const util = require('../../utils/util.js')
 const c = require("../../utils/class.js");
+var app = getApp()
+
 c.initiateFood();
 const defaultLogName = {
   work: '专注'
@@ -68,7 +70,7 @@ Page({
       {
         id: 9,
         name: '240'
-      }
+      },
     ],
     index: 0,
   },
@@ -200,7 +202,10 @@ Page({
         key: 'foods',
         data: foods,
       })
-      this.stopTimer()
+      //
+      getApp().data.food=c.foodArr[id];
+      getApp().data.time=this.data.objectArray[this.data.index].name;
+      this.stopTimer();
       return
     }
 
@@ -262,29 +267,4 @@ Page({
       return 6;
     }
   },
-
-  drawCanvas:function(cvs){
-    cvs.drawImage("../../image/share.png",0,0);
-    var tFood=c.foodArr[parseInt(this.data.foodId)];
-    var level=tFood.level;
-    var size=40+level*10;
-    cvs.drawImage(tFood.img,170-size,205-size);
-    cvs.setFontSize(35);
-    cvs.setFillStyle("#6ABFEC");
-    cvs.fillText(this.data.objectArray[this.data.index].name,120,446);
-    //
-    cvs.setFontSize(16);
-    cvs.setFillStyle("#818181");
-    //
-    var date = new Date();
-    if(date.getMonth()+1<10){
-      var myDate = date.getFullYear() + '-' + '0' + (date.getMonth() + 1) + '-' + date.getDate();
-    }
-    else{
-      var myDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
-    }
-    //
-    cvs.fillText(myDate,120,520);
-    cvs.draw();
-  }
 })

@@ -1,0 +1,4 @@
+<view style='display:flex;justify-content:center;width:100%'>
+  <canvas canvas-id="myCanvas"  style='width:342px;height:542px;border:2rpx solid;'/> 
+</view>
+<button type="primary" bindtap="save" class='button'>保存当前绘图</button>

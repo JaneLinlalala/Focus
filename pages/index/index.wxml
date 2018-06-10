@@ -33,12 +33,23 @@
 	</view>
 	
 	<view class="timer_footer">
-	  <view 
+	  <view wx:if="{{!completed}}"
 	  	bindtap="startTimer" 
 	  	data-type="work" 
-	  	class="timer_ctrl {{isRuning && timerType == 'rest' ? 'hide' : ''}}" >{{isRuning ? '完成': '专注'}}</view>
-
+	  	class="timer_ctrl {{isRuning && timerType == 'rest' ? 'hide' : ''}}" >{{isRuning ? '放弃': '专注'}}
+    </view>
+    <view wx:if="{{completed}}">
+      <view
+	  	bindtap="startTimer" 
+	  	data-type="work" 
+	  	class="timer_ctrl {{isRuning && timerType == 'rest' ? 'hide' : ''}}" >{{isRuning ? '完成': '专注'}}
+      </view>
+      <navigator url='/pages/picture/picture' class='share_navigator'>
+       <image class='share_icon' src="../../image/share1.png"></image>
+      </navigator>
+    </view>
 	</view>
+
   <view class="timer_button">
     <navigator url='/pages/logs/logs'>
        <image class='timer_icon' src="../../image/history.png"></image>
