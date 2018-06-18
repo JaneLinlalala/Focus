@@ -13,7 +13,7 @@ function Food(id, name, level, img) {
 var foodArr = new Array(foodNum);
 function initiateFood() {
   for (var i = 0; i < foodNum; i++) {
-    foodArr[i] = new Food(i, nameArr[i], levelArr[i], rootSrc + nameArr[i] + ".png");
+    foodArr[i] = new Food(i, nameArr[i], levelArr[i], rootSrc + (i+1) + ".png");
   }
 }
 //--
